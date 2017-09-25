@@ -44,3 +44,8 @@ services:
       MINIO_ACCESS_KEY: "${MINIO_ACCESS_KEY}"
       MINIO_SECRET_KEY: "${MINIO_SECRET_KEY}"
     command: server /export
+
+  httpd:
+    image: httpd:2.4
+    ports: ["8000:80"]
+    volumes: ["./minio-data:/usr/local/apache2/htdocs"]
