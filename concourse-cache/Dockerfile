@@ -10,3 +10,5 @@ RUN passwd -d root
 
 # allow root to ssh without password
 COPY sshd_config /etc/ssh/sshd_config
+
+
