@@ -1,0 +1,3 @@
+concourse-keytEmptyPasswords yes
+PasswordAuthentication yes
+UsePAM nom

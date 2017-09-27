@@ -8,6 +8,7 @@ services:
       POSTGRES_USER: "${CONCOURSE_POSTGRES_USER}"
       POSTGRES_PASSWORD: "${CONCOURSE_POSTGRES_PASSWORD}"
       PGDATA: /database
+    volumes: ["./volumes/pgsql:/var/lib/postgresql/data"]
 
   concourse-web:
     image: concourse/concourse
@@ -36,16 +37,16 @@ services:
     environment:
       CONCOURSE_TSA_HOST: concourse-web
 
-  minio:
-    image: minio/minio:RELEASE.2017-05-05T01-14-51Z
-    volumes: ["./minio-data:/export"]
-    ports: ["9000:9000"]
-    environment:
-      MINIO_ACCESS_KEY: "${MINIO_ACCESS_KEY}"
-      MINIO_SECRET_KEY: "${MINIO_SECRET_KEY}"
-    command: server /export
+  concourse-cache:
+    #image: kinogmt/centos-ssh
+    build: ./concourse-cache
+    volumes: ["./volumes/cache:/concourse-cache"]
 
-  httpd:
-    image: httpd:2.4
-    ports: ["8000:80"]
-    volumes: ["./minio-data:/usr/local/apache2/htdocs"]
+  #minio:
+  #  image: minio/minio:RELEASE.2017-05-05T01-14-51Z
+  #  volumes: ["./volumes/minio-data:/export"]
+  #  ports: ["9000:9000"]
+  #  environment:
+  #    MINIO_ACCESS_KEY: "${MINIO_ACCESS_KEY}"
+  #    MINIO_SECRET_KEY: "${MINIO_SECRET_KEY}"
+  #  command: server /export
