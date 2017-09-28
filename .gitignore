@@ -1,5 +1,4 @@
 keys
-minio-data
 .env
 *.swp
 *~
