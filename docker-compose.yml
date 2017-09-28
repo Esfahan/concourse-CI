@@ -8,6 +8,7 @@ services:
       POSTGRES_USER: "${CONCOURSE_POSTGRES_USER}"
       POSTGRES_PASSWORD: "${CONCOURSE_POSTGRES_PASSWORD}"
       PGDATA: /database
+    volumes: ["./volumes/pgsql:/var/lib/postgresql/data"]
 
   concourse-web:
     image: concourse/concourse
