@@ -36,17 +36,3 @@ services:
     volumes: ["./keys/worker:/concourse-keys"]
     environment:
       CONCOURSE_TSA_HOST: concourse-web
-
-  concourse-cache:
-    #image: kinogmt/centos-ssh
-    build: ./concourse-cache
-    volumes: ["./volumes/cache:/concourse-cache"]
-
-  #minio:
-  #  image: minio/minio:RELEASE.2017-05-05T01-14-51Z
-  #  volumes: ["./volumes/minio-data:/export"]
-  #  ports: ["9000:9000"]
-  #  environment:
-  #    MINIO_ACCESS_KEY: "${MINIO_ACCESS_KEY}"
-  #    MINIO_SECRET_KEY: "${MINIO_SECRET_KEY}"
-  #  command: server /export
